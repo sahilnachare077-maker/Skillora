@@ -545,7 +545,6 @@ function selectLevel(element, level) {
   document.getElementById("levelBtn")
     .classList.add("active");
 }
-
 function goToTime() {
 
   if (selectedLevel === "") {
@@ -553,9 +552,109 @@ function goToTime() {
     return;
   }
 
-  alert("Level selected: " + selectedLevel);
+  document.body.innerHTML = `
+
+    <div class="container">
+
+      <nav>
+        <div class="logo">SKILL<span>ORA</span></div>
+        <div class="menu">☰</div>
+      </nav>
+
+      <section class="hero">
+
+        <div class="badge">✦ Step 4 of your journey</div>
+
+        <h1>
+          How much time<br>
+          can you <span>give?</span>
+        </h1>
+
+        <p class="subtitle">
+          Choose how much time you can spend learning each week.
+        </p>
+
+      </section>
+
+      <section class="goal-section">
+
+        <div class="section-title">
+          <h2>Available time</h2>
+          <p>This helps us create a realistic roadmap</p>
+        </div>
+
+        <div class="goals">
+
+          <div class="goal" onclick="selectTime(this, '3 hours')">
+            <div class="icon">🌱</div>
+            <h3>3 Hours</h3>
+            <p>Light learning schedule</p>
+          </div>
+
+          <div class="goal" onclick="selectTime(this, '5 hours')">
+            <div class="icon">⚡</div>
+            <h3>5 Hours</h3>
+            <p>Balanced learning</p>
+          </div>
+
+          <div class="goal" onclick="selectTime(this, '7 hours')">
+            <div class="icon">🚀</div>
+            <h3>7 Hours</h3>
+            <p>Focused learning</p>
+          </div>
+
+          <div class="goal" onclick="selectTime(this, '10+ hours')">
+            <div class="icon">🔥</div>
+            <h3>10+ Hours</h3>
+            <p>Fast learning pace</p>
+          </div>
+
+        </div>
+
+        <button
+          class="continue"
+          id="timeBtn"
+          onclick="finishTime()">
+
+          Continue →
+
+        </button>
+
+      </section>
+
+    </div>
+
+  `;
+
 }
-  </script>
+
+let selectedTime = "";
+
+function selectTime(element, time) {
+
+  document.querySelectorAll(".goal").forEach(card => {
+    card.classList.remove("selected");
+  });
+
+  element.classList.add("selected");
+
+  selectedTime = time;
+
+  document.getElementById("timeBtn")
+    .classList.add("active");
+}
+
+function finishTime() {
+
+  if (selectedTime === "") {
+    alert("Please select your available time first.");
+    return;
+  }
+
+  alert("Time selected: " + selectedTime);
+
+}
+ <script>
 
 </body>
 </html>
