@@ -412,8 +412,6 @@ function toggleSkill(element) {
 
   }
 }
-
-
 function goToLevel() {
 
   if (selectedSkills.length === 0) {
@@ -421,12 +419,94 @@ function goToLevel() {
     return;
   }
 
-  alert(
-    "Skills selected: " +
-    selectedSkills.join(", ")
-  );
-} 
+  document.body.innerHTML = `
 
+    <div class="container">
+
+      <nav>
+        <div class="logo">SKILL<span>ORA</span></div>
+        <div class="menu">☰</div>
+      </nav>
+
+      <section class="hero">
+
+        <div class="badge">✦ Step 3 of your journey</div>
+
+        <h1>
+          What's your<br>
+          <span>skill level?</span>
+        </h1>
+
+        <p class="subtitle">
+          Choose the level that best describes your current knowledge.
+        </p>
+
+      </section>
+
+      <section class="goal-section">
+
+        <div class="section-title">
+          <h2>Choose your level</h2>
+          <p>We'll adjust your roadmap accordingly</p>
+        </div>
+
+        <div class="goals">
+
+          <div class="goal" onclick="selectLevel(this, 'Beginner')">
+            <div class="icon">🌱</div>
+            <h3>Beginner</h3>
+            <p>I'm starting from the basics</p>
+          </div>
+
+          <div class="goal" onclick="selectLevel(this, 'Intermediate')">
+            <div class="icon">🚀</div>
+            <h3>Intermediate</h3>
+            <p>I know the fundamentals</p>
+          </div>
+
+          <div class="goal" onclick="selectLevel(this, 'Advanced')">
+            <div class="icon">🔥</div>
+            <h3>Advanced</h3>
+            <p>I have strong knowledge</p>
+          </div>
+
+        </div>
+
+        <button class="continue" id="levelBtn" onclick="goToTime()">
+          Continue →
+        </button>
+
+      </section>
+
+    </div>
+  `;
+}
+
+let selectedLevel = "";
+
+function selectLevel(element, level) {
+
+  document.querySelectorAll(".goal").forEach(card => {
+    card.classList.remove("selected");
+  });
+
+  element.classList.add("selected");
+
+  selectedLevel = level;
+
+  document.getElementById("levelBtn")
+    .classList.add("active");
+}
+
+function goToTime() {
+
+  if (selectedLevel === "") {
+    alert("Please select your skill level first.");
+    return;
+  }
+
+  alert("Level selected: " + selectedLevel);
+}
   </script>
 
 </body>
