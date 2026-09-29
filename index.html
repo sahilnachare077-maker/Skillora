@@ -1,660 +1,1376 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skillora — Your Learning Path</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<title>SKILLORA</title>
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #070b18;
-      color: white;
-      min-height: 100vh;
-    }
+<style>
 
-    .container {
-      width: 92%;
-      max-width: 1100px;
-      margin: auto;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    /* NAVBAR */
-    nav {
-      height: 75px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+body{
+  font-family:Arial,sans-serif;
+  background:#0f172a;
+  color:#fff;
+}
 
-    .logo {
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: 1px;
-    }
+.container{
+  max-width:600px;
+  margin:auto;
+  min-height:100vh;
+  padding:20px;
+}
 
-    .logo span {
-      color: #6d7cff;
-    }
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:45px;
+}
 
-    .menu {
-      width: 42px;
-      height: 42px;
-      border: 1px solid #26304d;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      color: #aab4d0;
-    }
+.logo{
+  font-size:25px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
 
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 45px 0 30px;
-    }
+.logo span{
+  color:#8b5cf6;
+}
 
-    .badge {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 30px;
-      background: rgba(99,102,241,0.12);
-      border: 1px solid rgba(99,102,241,0.3);
-      color: #9da7ff;
-      font-size: 13px;
-      margin-bottom: 20px;
-    }
+.menu{
+  font-size:25px;
+  opacity:.8;
+}
 
-    h1 {
-      font-size: clamp(38px, 9vw, 72px);
-      line-height: 1.05;
-      margin-bottom: 18px;
-    }
+.hero{
+  text-align:center;
+  margin-bottom:35px;
+}
 
-    h1 span {
-      background: linear-gradient(90deg, #5ee7ff, #7c6cff, #b86cff);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
+.badge{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:20px;
+  background:#1e293b;
+  color:#a78bfa;
+  font-size:13px;
+  margin-bottom:20px;
+}
 
-    .subtitle {
-      max-width: 650px;
-      margin: auto;
-      color: #9ca7c2;
-      line-height: 1.7;
-      font-size: 15px;
-    }
+h1{
+  font-size:38px;
+  line-height:1.15;
+  margin-bottom:15px;
+}
 
-    /* GOALS */
-    .goal-section {
-      margin-top: 35px;
-      padding-bottom: 60px;
-    }
+h1 span{
+  color:#a78bfa;
+}
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+.subtitle{
+  color:#94a3b8;
+  line-height:1.6;
+  font-size:15px;
+}
 
-    .section-title h2 {
-      font-size: 23px;
-      margin-bottom: 7px;
-    }
+.section-title{
+  margin-bottom:20px;
+}
 
-    .section-title p {
-      color: #75809c;
-      font-size: 13px;
-    }
+.section-title h2{
+  font-size:22px;
+  margin-bottom:6px;
+}
 
-    .goals {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
+.section-title p{
+  color:#64748b;
+  font-size:14px;
+}
 
-    .goal {
-      background: #101729;
-      border: 1px solid #202b47;
-      border-radius: 18px;
-      padding: 20px 14px;
-      cursor: pointer;
-      transition: 0.25s;
-    }
+.goals{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
 
-    .goal:hover {
-      transform: translateY(-3px);
-      border-color: #6875ff;
-      background: #141c32;
-    }
+.goal{
+  background:#1e293b;
+  border:2px solid transparent;
+  border-radius:18px;
+  padding:20px 15px;
+  cursor:pointer;
+  transition:.2s;
+}
 
-    .goal.selected {
-      border-color: #6875ff;
-      box-shadow: 0 0 20px rgba(104,117,255,0.15);
-    }
+.goal:hover{
+  transform:translateY(-2px);
+}
 
-    .icon {
-      font-size: 30px;
-      margin-bottom: 12px;
-    }
+.goal.selected{
+  border-color:#8b5cf6;
+  background:#241b3d;
+}
 
-    .goal h3 {
-      font-size: 15px;
-      margin-bottom: 5px;
-    }
+.icon{
+  font-size:30px;
+  margin-bottom:12px;
+}
 
-    .goal p {
-      color: #74809b;
-      font-size: 11px;
-      line-height: 1.4;
-    }
+.goal h3{
+  font-size:16px;
+  margin-bottom:7px;
+}
 
-    /* BUTTON */
-    .continue {
-      display: block;
-      width: 100%;
-      max-width: 500px;
-      margin: 28px auto 0;
-      padding: 16px;
-      border: none;
-      border-radius: 14px;
-      background: linear-gradient(90deg, #5865f2, #8b5cf6);
-      color: white;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      opacity: 0.5;
-    }
+.goal p{
+  color:#94a3b8;
+  font-size:12px;
+  line-height:1.4;
+}
 
-    .continue.active {
-      opacity: 1;
-    }
+.continue{
+  width:100%;
+  border:0;
+  padding:16px;
+  margin-top:25px;
+  border-radius:14px;
+  background:#334155;
+  color:#94a3b8;
+  font-size:16px;
+  font-weight:bold;
+}
 
-    .continue:active {
-      transform: scale(0.98);
-    }
+.continue.active{
+  background:#8b5cf6;
+  color:white;
+  cursor:pointer;
+}
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #515d79;
-      font-size: 11px;
-    }
+.skill-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
 
-    @media (min-width: 700px) {
-      .goals {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-  </style>
+.skill{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:17px;
+  background:#1e293b;
+  border:2px solid transparent;
+  border-radius:15px;
+  cursor:pointer;
+}
+
+.skill.selected{
+  border-color:#8b5cf6;
+  background:#241b3d;
+}
+
+.check{
+  width:25px;
+  height:25px;
+  border:2px solid #64748b;
+  border-radius:7px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.skill.selected .check{
+  background:#8b5cf6;
+  border-color:#8b5cf6;
+}
+
+.time-box{
+  background:#1e293b;
+  border-radius:16px;
+  padding:18px;
+  margin-top:20px;
+}
+
+.time-box h3{
+  margin-bottom:10px;
+}
+
+.time-box p{
+  color:#94a3b8;
+  font-size:13px;
+}
+
+.roadmap{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  margin-top:25px;
+}
+
+.roadmap-item{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  background:#1e293b;
+  padding:17px;
+  border-radius:16px;
+}
+
+.node{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#334155;
+  flex-shrink:0;
+}
+
+.node.completed{
+  background:#22c55e;
+}
+
+.node.active{
+  background:#8b5cf6;
+}
+
+.roadmap-item h3{
+  font-size:15px;
+  margin-bottom:4px;
+}
+
+.roadmap-item p{
+  color:#94a3b8;
+  font-size:12px;
+}
+
+.progress{
+  height:8px;
+  background:#1e293b;
+  border-radius:10px;
+  margin-top:25px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:20%;
+  background:#8b5cf6;
+  border-radius:10px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:10px;
+  margin-top:20px;
+}
+
+.stat{
+  background:#1e293b;
+  padding:15px 8px;
+  border-radius:14px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:20px;
+  color:#a78bfa;
+}
+
+.stat small{
+  color:#94a3b8;
+  font-size:10px;
+}
+
+.back{
+  color:#a78bfa;
+  cursor:pointer;
+  margin-bottom:20px;
+  display:inline-block;
+  font-size:14px;
+}
+
+@media(max-width:400px){
+
+  h1{
+    font-size:32px;
+  }
+
+  .goals{
+    gap:10px;
+  }
+
+  .goal{
+    padding:16px 12px;
+  }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <div class="container">
-
-    <nav>
-      <div class="logo">SKILL<span>ORA</span></div>
-      <div class="menu">☰</div>
-    </nav>
-
-    <section class="hero">
-
-      <div class="badge">✦ Personalized Learning Journey</div>
-
-      <h1>
-        What do you want<br>
-        <span>to become?</span>
-      </h1>
-
-      <p class="subtitle">
-        Tell us your goal, skills and interests.
-        Skillora will build a personalized learning roadmap
-        designed for your journey.
-      </p>
-
-    </section>
-
-    <section class="goal-section">
-
-      <div class="section-title">
-        <h2>Choose your goal</h2>
-        <p>You can change this later</p>
-      </div>
-
-      <div class="goals">
-
-        <div class="goal" onclick="selectGoal(this, 'AI / ML')">
-          <div class="icon">🤖</div>
-          <h3>AI / ML</h3>
-          <p>Build intelligent systems</p>
-        </div>
-
-        <div class="goal" onclick="selectGoal(this, 'Data Scientist')">
-          <div class="icon">📊</div>
-          <h3>Data Scientist</h3>
-          <p>Turn data into insights</p>
-        </div>
-
-        <div class="goal" onclick="selectGoal(this, 'Cybersecurity')">
-          <div class="icon">🔐</div>
-          <h3>Cybersecurity</h3>
-          <p>Protect digital systems</p>
-        </div>
-
-        <div class="goal" onclick="selectGoal(this, 'Web Developer')">
-          <div class="icon">🌐</div>
-          <h3>Web Developer</h3>
-          <p>Create modern websites</p>
-        </div>
-
-        <div class="goal" onclick="selectGoal(this, 'UI / UX')">
-          <div class="icon">🎨</div>
-          <h3>UI / UX</h3>
-          <p>Design better experiences</p>
-        </div>
-
-        <div class="goal" onclick="selectGoal(this, 'Electronics')">
-          <div class="icon">⚡</div>
-          <h3>Electronics</h3>
-          <p>Build smart hardware</p>
-        </div>
-
-      </div>
-
-      <button class="continue" id="continueBtn" onclick="continueNext()">
-        Continue →
-      </button>
-
-    </section>
-
-  </div>
-
-  <footer>
-    © 2026 Skillora · Learn smarter. Build better.
-  </footer>
+<div id="app"></div>
 
 
-  <script>
+<script>
 
-    let selectedGoal = "";
-
-    function selectGoal(element, goal) {
-
-      document.querySelectorAll(".goal").forEach(card => {
-        card.classList.remove("selected");
-      });
-
-      element.classList.add("selected");
-
-      selectedGoal = goal;
-
-      document.getElementById("continueBtn")
-        .classList.add("active");
-    }
-
-  function continueNext() {
-
-  if (selectedGoal === "") {
-    alert("Please select your goal first.");
-    return;
-  }
-
-  let skills = [];
-
-  if (selectedGoal === "Web Developer") {
-    skills = ["HTML", "CSS", "JavaScript", "Git / GitHub", "React"];
-  } 
-  else if (selectedGoal === "AI / ML") {
-    skills = ["Python", "Mathematics", "NumPy", "Pandas", "Machine Learning"];
-  } 
-  else if (selectedGoal === "Data Scientist") {
-    skills = ["Python", "Statistics", "SQL", "Pandas", "Data Visualization"];
-  } 
-  else if (selectedGoal === "Cybersecurity") {
-    skills = ["Networking", "Linux", "Python", "Cyber Security Basics", "Ethical Hacking"];
-  } 
-  else if (selectedGoal === "UI / UX") {
-    skills = ["Design Basics", "Figma", "Typography", "Color Theory", "User Research"];
-  } 
-  else {
-    skills = ["Basic Concepts", "Tools", "Fundamentals", "Practice", "Projects"];
-  }
-
-  let skillCards = "";
-
-  skills.forEach(function(skill) {
-    skillCards += `
-      <div class="goal skill-card" onclick="toggleSkill(this)">
-        <div class="icon">☐</div>
-        <h3>${skill}</h3>
-        <p>I already know this</p>
-      </div>
-    `;
-  });
-
-  document.body.innerHTML = `
-
-    <div class="container">
-
-      <nav>
-        <div class="logo">SKILL<span>ORA</span></div>
-        <div class="menu">☰</div>
-      </nav>
-
-      <section class="hero">
-
-        <div class="badge">✦ Step 2 of your journey</div>
-
-        <h1>
-          What do you<br>
-          <span>already know?</span>
-        </h1>
-
-        <p class="subtitle">
-          Select the skills you already have.
-          Skillora will use them to personalize your roadmap.
-        </p>
-
-      </section>
-
-      <section class="goal-section">
-
-        <div class="section-title">
-          <h2>Your current skills</h2>
-          <p>Choose all that apply</p>
-        </div>
-
-        <div class="goals">
-          ${skillCards}
-        </div>
-
-        <button class="continue active" onclick="goToLevel()">
-          Continue →
-        </button>
-
-      </section>
-
-    </div>
-  `;
-}
-
-
+let selectedGoal = "";
 let selectedSkills = [];
-
-
-function toggleSkill(element) {
-
-  let skillName = element.querySelector("h3").innerText;
-
-  element.classList.toggle("selected");
-
-  if (selectedSkills.includes(skillName)) {
-
-    selectedSkills = selectedSkills.filter(
-      skill => skill !== skillName
-    );
-
-    element.querySelector(".icon").innerText = "☐";
-
-  } else {
-
-    selectedSkills.push(skillName);
-
-    element.querySelector(".icon").innerText = "☑";
-
-  }
-
-function goToLevel() {
-
-  if (selectedSkills.length === 0) {
-    alert("Please select at least one skill.");
-    return;
-  }
-
-  document.body.innerHTML = `
-
-    <div class="container">
-
-      <nav>
-        <div class="logo">SKILL<span>ORA</span></div>
-        <div class="menu">☰</div>
-      </nav>
-
-      <section class="hero">
-
-        <div class="badge">✦ Step 3 of your journey</div>
-
-        <h1>
-          What's your<br>
-          <span>skill level?</span>
-        </h1>
-
-        <p class="subtitle">
-          Choose the level that best describes your current knowledge.
-        </p>
-
-      </section>
-
-      <section class="goal-section">
-
-        <div class="section-title">
-          <h2>Choose your level</h2>
-          <p>We'll adjust your roadmap accordingly</p>
-        </div>
-
-        <div class="goals">
-
-          <div class="goal"
-               onclick="selectLevel(this, 'Beginner')">
-
-            <div class="icon">🌱</div>
-            <h3>Beginner</h3>
-            <p>I'm starting from the basics</p>
-
-          </div>
-
-
-          <div class="goal"
-               onclick="selectLevel(this, 'Intermediate')">
-
-            <div class="icon">🚀</div>
-            <h3>Intermediate</h3>
-            <p>I know the fundamentals</p>
-
-          </div>
-
-
-          <div class="goal"
-               onclick="selectLevel(this, 'Advanced')">
-
-            <div class="icon">🔥</div>
-            <h3>Advanced</h3>
-            <p>I have strong knowledge</p>
-
-          </div>
-
-        </div>
-
-
-        <button
-          class="continue"
-          id="levelBtn"
-          onclick="finishLevel()">
-
-          Continue →
-
-        </button>
-
-      </section>
-
-    </div>
-
-  `;
-}
-
-
 let selectedLevel = "";
-
-
-function selectLevel(element, level) {
-
-  document.querySelectorAll(".goal").forEach(card => {
-    card.classList.remove("selected");
-  });
-
-  element.classList.add("selected");
-
-  selectedLevel = level;
-
-  document.getElementById("levelBtn")
-    .classList.add("active");
-}
-
-
-function finishLevel() {
-
-  if (selectedLevel === "") {
-
-    alert("Please select your skill level first.");
-
-    return;
-  }
-
-  goToTime();
-}
-    let selectedLevel = "";
-
-function selectLevel(element, level) {
-
-  document.querySelectorAll(".goal").forEach(card => {
-    card.classList.remove("selected");
-  });
-
-  element.classList.add("selected");
-
-  selectedLevel = level;
-
-  document.getElementById("levelBtn")
-    .classList.add("active");
-}
-function goToTime() {
-
-  if (selectedLevel === "") {
-    alert("Please select your skill level first.");
-    return;
-  }
-
-  document.body.innerHTML = `
-
-    <div class="container">
-
-      <nav>
-        <div class="logo">SKILL<span>ORA</span></div>
-        <div class="menu">☰</div>
-      </nav>
-
-      <section class="hero">
-
-        <div class="badge">✦ Step 4 of your journey</div>
-
-        <h1>
-          How much time<br>
-          can you <span>give?</span>
-        </h1>
-
-        <p class="subtitle">
-          Choose how much time you can spend learning each week.
-        </p>
-
-      </section>
-
-      <section class="goal-section">
-
-        <div class="section-title">
-          <h2>Available time</h2>
-          <p>This helps us create a realistic roadmap</p>
-        </div>
-
-        <div class="goals">
-
-          <div class="goal" onclick="selectTime(this, '3 hours')">
-            <div class="icon">🌱</div>
-            <h3>3 Hours</h3>
-            <p>Light learning schedule</p>
-          </div>
-
-          <div class="goal" onclick="selectTime(this, '5 hours')">
-            <div class="icon">⚡</div>
-            <h3>5 Hours</h3>
-            <p>Balanced learning</p>
-          </div>
-
-          <div class="goal" onclick="selectTime(this, '7 hours')">
-            <div class="icon">🚀</div>
-            <h3>7 Hours</h3>
-            <p>Focused learning</p>
-          </div>
-
-          <div class="goal" onclick="selectTime(this, '10+ hours')">
-            <div class="icon">🔥</div>
-            <h3>10+ Hours</h3>
-            <p>Fast learning pace</p>
-          </div>
-
-        </div>
-
-        <button
-          class="continue"
-          id="timeBtn"
-          onclick="finishTime()">
-
-          Continue →
-
-        </button>
-
-      </section>
-
-    </div>
-
-  `;
-
-}
-
 let selectedTime = "";
+let selectedInterests = [];
 
-function selectTime(element, time) {
 
-  document.querySelectorAll(".goal").forEach(card => {
-    card.classList.remove("selected");
-  });
+/* =========================
+   FIRST PAGE
+========================= */
 
-  element.classList.add("selected");
+function showHome(){
 
-  selectedTime = time;
+document.getElementById("app").innerHTML = `
 
-  document.getElementById("timeBtn")
-    .classList.add("active");
+<div class="container">
+
+<nav>
+  <div class="logo">SKILL<span>ORA</span></div>
+  <div class="menu">☰</div>
+</nav>
+
+<section class="hero">
+
+<div class="badge">✦ Personalized Learning Journey</div>
+
+<h1>
+What do you want<br>
+to <span>become?</span>
+</h1>
+
+<p class="subtitle">
+Tell us your goal and we'll create a learning path made for you.
+</p>
+
+</section>
+
+
+<section>
+
+<div class="section-title">
+<h2>Choose your goal</h2>
+<p>Your destination decides your roadmap.</p>
+</div>
+
+
+<div class="goals">
+
+<div class="goal"
+onclick="selectGoal(this,'AI / ML')">
+<div class="icon">🤖</div>
+<h3>AI / ML</h3>
+<p>Build intelligent systems</p>
+</div>
+
+
+<div class="goal"
+onclick="selectGoal(this,'Data Scientist')">
+<div class="icon">📊</div>
+<h3>Data Scientist</h3>
+<p>Turn data into insights</p>
+</div>
+
+
+<div class="goal"
+onclick="selectGoal(this,'Cybersecurity')">
+<div class="icon">🔐</div>
+<h3>Cybersecurity</h3>
+<p>Protect digital systems</p>
+</div>
+
+
+<div class="goal"
+onclick="selectGoal(this,'Web Developer')">
+<div class="icon">🌐</div>
+<h3>Web Developer</h3>
+<p>Build modern websites</p>
+</div>
+
+
+<div class="goal"
+onclick="selectGoal(this,'UI / UX')">
+<div class="icon">🎨</div>
+<h3>UI / UX</h3>
+<p>Design better experiences</p>
+</div>
+
+
+<div class="goal"
+onclick="selectGoal(this,'Electronics')">
+<div class="icon">⚡</div>
+<h3>Electronics</h3>
+<p>Build smart devices</p>
+</div>
+
+</div>
+
+
+<button
+id="goalBtn"
+class="continue"
+onclick="goToSkills()">
+
+Continue →
+
+</button>
+
+</section>
+
+</div>
+
+`;
+
 }
 
-function finishTime() {
 
-  if (selectedTime === "") {
-    alert("Please select your available time first.");
-    return;
-  }
+/* =========================
+   GOAL
+========================= */
 
-  alert("Time selected: " + selectedTime);
+function selectGoal(element,goal){
+
+document.querySelectorAll(".goal").forEach(card=>{
+card.classList.remove("selected");
+});
+
+element.classList.add("selected");
+
+selectedGoal = goal;
+
+document.getElementById("goalBtn")
+.classList.add("active");
 
 }
- <script>
+
+
+/* =========================
+   SKILLS PAGE
+========================= */
+
+function goToSkills(){
+
+if(selectedGoal===""){
+alert("Please select your goal first.");
+return;
+}
+
+let skills=[];
+
+if(selectedGoal==="Web Developer"){
+skills=[
+"HTML",
+"CSS",
+"JavaScript",
+"Git / GitHub",
+"React"
+];
+}
+
+else if(selectedGoal==="AI / ML"){
+skills=[
+"Python",
+"Mathematics",
+"NumPy",
+"Pandas",
+"Machine Learning"
+];
+}
+
+else if(selectedGoal==="Data Scientist"){
+skills=[
+"Python",
+"Statistics",
+"SQL",
+"Pandas",
+"Data Visualization"
+];
+}
+
+else if(selectedGoal==="Cybersecurity"){
+skills=[
+"Networking",
+"Linux",
+"Python",
+"Security Basics",
+"Ethical Hacking"
+];
+}
+
+else if(selectedGoal==="UI / UX"){
+skills=[
+"Design Basics",
+"Figma",
+"Typography",
+"Color Theory",
+"User Research"
+];
+}
+
+else{
+skills=[
+"Basic Electronics",
+"Circuits",
+"Digital Electronics",
+"Microcontrollers",
+"Projects"
+];
+}
+
+
+selectedSkills=[];
+
+
+document.getElementById("app").innerHTML=`
+
+<div class="container">
+
+<nav>
+<div class="logo">SKILL<span>ORA</span></div>
+<div class="menu">☰</div>
+</nav>
+
+
+<section class="hero">
+
+<div class="badge">✦ Step 2 of your journey</div>
+
+<h1>
+What do you<br>
+already <span>know?</span>
+</h1>
+
+<p class="subtitle">
+Select the skills you already have.
+</p>
+
+</section>
+
+
+<section>
+
+<div class="section-title">
+<h2>Current skills</h2>
+<p>Select one or more skills.</p>
+</div>
+
+
+<div class="skill-list">
+
+${skills.map(skill=>`
+
+<div class="skill"
+onclick="toggleSkill(this,'${skill}')">
+
+<div>
+<strong>${skill}</strong>
+</div>
+
+<div class="check">✓</div>
+
+</div>
+
+`).join("")}
+
+</div>
+
+
+<button
+id="skillBtn"
+class="continue"
+onclick="goToLevel()">
+
+Continue →
+
+</button>
+
+</section>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   SELECT SKILLS
+========================= */
+
+function toggleSkill(element,skill){
+
+element.classList.toggle("selected");
+
+if(selectedSkills.includes(skill)){
+
+selectedSkills=
+selectedSkills.filter(s=>s!==skill);
+
+}
+
+else{
+
+selectedSkills.push(skill);
+
+}
+
+if(selectedSkills.length>0){
+
+document.getElementById("skillBtn")
+.classList.add("active");
+
+}
+
+}
+
+
+/* =========================
+   LEVEL PAGE
+========================= */
+
+function goToLevel(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="container">
+
+<nav>
+<div class="logo">SKILL<span>ORA</span></div>
+<div class="menu">☰</div>
+</nav>
+
+
+<section class="hero">
+
+<div class="badge">✦ Step 3 of your journey</div>
+
+<h1>
+What's your<br>
+<span>skill level?</span>
+</h1>
+
+<p class="subtitle">
+Choose the level that best describes your current knowledge.
+</p>
+
+</section>
+
+
+<section>
+
+<div class="section-title">
+<h2>Choose your level</h2>
+<p>We'll adjust your roadmap accordingly.</p>
+</div>
+
+
+<div class="goals">
+
+<div class="goal"
+onclick="selectLevel(this,'Beginner')">
+
+<div class="icon">🌱</div>
+<h3>Beginner</h3>
+<p>I'm starting from the basics</p>
+
+</div>
+
+
+<div class="goal"
+onclick="selectLevel(this,'Intermediate')">
+
+<div class="icon">🚀</div>
+<h3>Intermediate</h3>
+<p>I know the fundamentals</p>
+
+</div>
+
+
+<div class="goal"
+onclick="selectLevel(this,'Advanced')">
+
+<div class="icon">🔥</div>
+<h3>Advanced</h3>
+<p>I have strong knowledge</p>
+
+</div>
+
+</div>
+
+
+<button
+id="levelBtn"
+class="continue"
+onclick="goToTime()">
+
+Continue →
+
+</button>
+
+</section>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   SELECT LEVEL
+========================= */
+
+function selectLevel(element,level){
+
+document.querySelectorAll(".goal").forEach(card=>{
+card.classList.remove("selected");
+});
+
+element.classList.add("selected");
+
+selectedLevel=level;
+
+document.getElementById("levelBtn")
+.classList.add("active");
+
+}
+
+
+/* =========================
+   TIME PAGE
+========================= */
+
+function goToTime(){
+
+if(selectedLevel===""){
+alert("Please select your skill level first.");
+return;
+}
+
+
+document.getElementById("app").innerHTML=`
+
+<div class="container">
+
+<nav>
+<div class="logo">SKILL<span>ORA</span></div>
+<div class="menu">☰</div>
+</nav>
+
+
+<section class="hero">
+
+<div class="badge">✦ Step 4 of your journey</div>
+
+<h1>
+How much time<br>
+can you <span>give?</span>
+</h1>
+
+<p class="subtitle">
+Choose how much time you can spend learning each week.
+</p>
+
+</section>
+
+
+<section>
+
+<div class="section-title">
+<h2>Available time</h2>
+<p>We'll create a realistic roadmap for you.</p>
+</div>
+
+
+<div class="goals">
+
+<div class="goal"
+onclick="selectTime(this,'3 hours')">
+
+<div class="icon">🌱</div>
+<h3>3 Hours</h3>
+<p>Light learning schedule</p>
+
+</div>
+
+
+<div class="goal"
+onclick="selectTime(this,'5 hours')">
+
+<div class="icon">⚡</div>
+<h3>5 Hours</h3>
+<p>Balanced learning</p>
+
+</div>
+
+
+<div class="goal"
+onclick="selectTime(this,'7 hours')">
+
+<div class="icon">🚀</div>
+<h3>7 Hours</h3>
+<p>Focused learning</p>
+
+</div>
+
+
+<div class="goal"
+onclick="selectTime(this,'10+ hours')">
+
+<div class="icon">🔥</div>
+<h3>10+ Hours</h3>
+<p>Fast learning pace</p>
+
+</div>
+
+</div>
+
+
+<button
+id="timeBtn"
+class="continue"
+onclick="goToInterests()">
+
+Continue →
+
+</button>
+
+</section>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   SELECT TIME
+========================= */
+
+function selectTime(element,time){
+
+document.querySelectorAll(".goal").forEach(card=>{
+card.classList.remove("selected");
+});
+
+element.classList.add("selected");
+
+selectedTime=time;
+
+document.getElementById("timeBtn")
+.classList.add("active");
+
+}
+
+
+/* =========================
+   INTEREST PAGE
+========================= */
+
+function goToInterests(){
+
+if(selectedTime===""){
+alert("Please select your available time first.");
+return;
+}
+
+
+let interests=[
+"💻 Coding",
+"📊 Data",
+"🤖 Artificial Intelligence",
+"🎨 Design",
+"🔐 Security",
+"⚡ Technology",
+"🚀 Projects",
+"🧠 Problem Solving"
+];
+
+
+selectedInterests=[];
+
+
+document.getElementById("app").innerHTML=`
+
+<div class="container">
+
+<nav>
+<div class="logo">SKILL<span>ORA</span></div>
+<div class="menu">☰</div>
+</nav>
+
+
+<section class="hero">
+
+<div class="badge">✦ Step 5 of your journey</div>
+
+<h1>
+What are you<br>
+<span>interested in?</span>
+</h1>
+
+<p class="subtitle">
+Choose the areas you enjoy learning about.
+</p>
+
+</section>
+
+
+<section>
+
+<div class="section-title">
+<h2>Your interests</h2>
+<p>Select as many as you want.</p>
+</div>
+
+
+<div class="goals">
+
+${interests.map(interest=>`
+
+<div class="goal"
+onclick="selectInterest(this,'${interest}')">
+
+<div class="icon">
+${interest.split(" ")[0]}
+</div>
+
+<h3>
+${interest.substring(2)}
+</h3>
+
+</div>
+
+`).join("")}
+
+</div>
+
+
+<button
+id="interestBtn"
+class="continue"
+onclick="buildRoadmap()">
+
+Build My Roadmap →
+
+</button>
+
+</section>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   SELECT INTEREST
+========================= */
+
+function selectInterest(element,interest){
+
+element.classList.toggle("selected");
+
+if(selectedInterests.includes(interest)){
+
+selectedInterests=
+selectedInterests.filter(i=>i!==interest);
+
+}
+
+else{
+
+selectedInterests.push(interest);
+
+}
+
+if(selectedInterests.length>0){
+
+document.getElementById("interestBtn")
+.classList.add("active");
+
+}
+
+}
+
+
+/* =========================
+   ROADMAP
+========================= */
+
+function buildRoadmap(){
+
+if(selectedInterests.length===0){
+
+alert("Please select at least one interest.");
+
+return;
+
+}
+
+
+let roadmap=[];
+
+
+if(selectedGoal==="Web Developer"){
+
+roadmap=[
+"HTML & Web Basics",
+"CSS & Responsive Design",
+"JavaScript",
+"Git & GitHub",
+"React",
+"Build Real Projects",
+"Portfolio",
+"Internship Preparation"
+];
+
+}
+
+else if(selectedGoal==="AI / ML"){
+
+roadmap=[
+"Python",
+"Mathematics Basics",
+"NumPy",
+"Pandas",
+"Data Visualization",
+"Machine Learning",
+"ML Projects",
+"Portfolio",
+"Internship Preparation"
+];
+
+}
+
+else if(selectedGoal==="Data Scientist"){
+
+roadmap=[
+"Python",
+"Statistics",
+"SQL",
+"Pandas",
+"Data Visualization",
+"Machine Learning",
+"Data Projects",
+"Portfolio"
+];
+
+}
+
+else if(selectedGoal==="Cybersecurity"){
+
+roadmap=[
+"Computer Basics",
+"Networking",
+"Linux",
+"Python",
+"Security Fundamentals",
+"Ethical Hacking",
+"Security Projects",
+"Portfolio"
+];
+
+}
+
+else if(selectedGoal==="UI / UX"){
+
+roadmap=[
+"Design Fundamentals",
+"Figma",
+"Typography",
+"Color Theory",
+"User Research",
+"Wireframing",
+"UI Projects",
+"Portfolio"
+];
+
+}
+
+else{
+
+roadmap=[
+"Electronics Basics",
+"Circuit Fundamentals",
+"Digital Electronics",
+"Microcontrollers",
+"Sensors",
+"Programming",
+"Projects",
+"Portfolio"
+];
+
+}
+
+
+document.getElementById("app").innerHTML=`
+
+<div class="container">
+
+<nav>
+
+<div class="logo">
+SKILL<span>ORA</span>
+</div>
+
+<div class="menu">☰</div>
+
+</nav>
+
+
+<section class="hero">
+
+<div class="badge">✦ Your Personalized Roadmap</div>
+
+<h1>
+Your path to<br>
+<span>${selectedGoal}</span>
+</h1>
+
+<p class="subtitle">
+Based on your skills, level, time and interests.
+</p>
+
+</section>
+
+
+<div class="stats">
+
+<div class="stat">
+<strong>${roadmap.length}</strong>
+<small>Skills</small>
+</div>
+
+<div class="stat">
+<strong>${selectedTime}</strong>
+<small>Per Week</small>
+</div>
+
+<div class="stat">
+<strong>${selectedLevel}</strong>
+<small>Level</small>
+</div>
+
+</div>
+
+
+<div class="progress">
+
+<div class="progress-bar"></div>
+
+</div>
+
+
+<section>
+
+<div class="section-title" style="margin-top:30px">
+
+<h2>🚀 Your Roadmap</h2>
+
+<p>
+Start from where you are and move step by step.
+</p>
+
+</div>
+
+
+<div class="roadmap">
+
+${roadmap.map((item,index)=>`
+
+<div class="roadmap-item">
+
+<div class="node ${index===0?'active':''}">
+${index===0?'▶':index+1}
+</div>
+
+<div>
+
+<h3>${item}</h3>
+
+<p>
+${index===0
+?'Start here — build your foundation.'
+:index===roadmap.length-1
+?'Prepare yourself for real opportunities.'
+:'Learn → Practice → Build → Test'}
+</p>
+
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
+
+
+<div class="time-box">
+
+<h3>🎯 Your Learning Target</h3>
+
+<p>
+With <strong>${selectedTime}</strong> per week,
+follow your roadmap consistently and complete
+one skill at a time.
+</p>
+
+</div>
+
+
+<button
+class="continue active"
+onclick="showDashboard()">
+
+Open My Dashboard →
+
+</button>
+
+
+</section>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function showDashboard(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="container">
+
+<nav>
+
+<div class="logo">
+SKILL<span>ORA</span>
+</div>
+
+<div class="menu">☰</div>
+
+</nav>
+
+
+<section class="hero">
+
+<div class="badge">✦ Skillora Dashboard</div>
+
+<h1>
+Keep moving<br>
+<span>forward.</span>
+</h1>
+
+<p class="subtitle">
+Your learning journey is just getting started.
+</p>
+
+</section>
+
+
+<div class="stats">
+
+<div class="stat">
+<strong>0%</strong>
+<small>Progress</small>
+</div>
+
+<div class="stat">
+<strong>0</strong>
+<small>Completed</small>
+</div>
+
+<div class="stat">
+<strong>🔥 0</strong>
+<small>Streak</small>
+</div>
+
+</div>
+
+
+<div class="time-box">
+
+<h3>📍 You are here</h3>
+
+<p>
+🟢 Goal: <strong>${selectedGoal}</strong>
+</p>
+
+<p>
+🟢 Level: <strong>${selectedLevel}</strong>
+</p>
+
+<p>
+🟢 Time: <strong>${selectedTime}</strong>
+</p>
+
+</div>
+
+
+<div class="time-box">
+
+<h3>📚 Next Step</h3>
+
+<p>
+Start your first roadmap skill and complete:
+</p>
+
+<br>
+
+<p>
+<strong>Learn → Practice → Mini Project → Test</strong>
+</p>
+
+</div>
+
+
+<button
+class="continue active"
+onclick="buildRoadmap()">
+
+View My Roadmap →
+
+</button>
+
+
+</div>
+
+`;
+
+}
+
+
+/* START APP */
+
+showHome();
+
+</script>
 
 </body>
 </html>
