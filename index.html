@@ -1,1 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SKILLORA</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#080d1c;
+  color:white;
+}
+
+.container{
+  max-width:650px;
+  margin:auto;
+  min-height:100vh;
+  padding:22px;
+}
+
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:55px;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.logo span{
+  color:#8b5cf6;
+}
+
+.menu{
+  font-size:25px;
+  color:#cbd5e1;
+}
+
+.hero{
+  text-align:center;
+  margin-bottom:38px;
+}
+
+.badge{
+  display:inline-block;
+  background:#172036;
+  color:#a78bfa;
+  padding:9px 15px;
+  border-radius:30px;
+  font-size:13px;
+  margin-bottom:22px;
+}
+
+h1{
+  font-size:40px;
+  line-height:1.15;
+  margin-bottom:16px;
+}
+
+h1 span{
+  color:#a78bfa;
+}
+
+.subtitle{
+  color:#94a3b8;
+  font-size:16px;
+  line-height:1.6;
+}
+
+.section-title{
+  margin-bottom:20px;
+}
+
+.section-title h2{
+  font-size:23px;
+  margin-bottom:7px;
+}
+
+.section-title p{
+  color:#64748b;
+  font-size:14px;
+}
+
+.goals{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.goal{
+  background:#121a2d;
+  border:2px solid #26324b;
+  border-radius:20px;
+  padding:22px 17px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.goal.selected{
+  border-color:#7c6cff;
+  background:#171c39;
+}
+
+.icon{
+  font-size:35px;
+  margin-bottom:16px;
+}
+
+.goal h3{
+  font-size:17px;
+  margin-bottom:8px;
+}
+
+.goal p{
+  color:#8793aa;
+  font-size:13px;
+  line-height:1.4;
+}
+
+.continue{
+  width:100%;
+  margin-top:26px;
+  padding:17px;
+  border:none;
+  border-radius:17px;
+  background:#333b59;
+  color:#8b94a8;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.continue.active{
+  background:linear-gradient(90deg,#4147aa,#6634a6);
+  color:white;
+}
+
+.skill-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.skill{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#121a2d;
+  border:2px solid #26324b;
+  border-radius:16px;
+  padding:18px;
+  cursor:pointer;
+}
+
+.skill.selected{
+  border-color:#7c6cff;
+  background:#171c39;
+}
+
+.check{
+  width:27px;
+  height:27px;
+  border:2px solid #64748b;
+  border-radius:8px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:transparent;
+}
+
+.skill.selected .check{
+  background:#7c5cff;
+  border-color:#7c5cff;
+  color:white;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.stat{
+  background:#121a2d;
+  border:1px solid #26324b;
+  border-radius:15px;
+  padding:16px 8px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  color:#a78bfa;
+  font-size:19px;
+  margin-bottom:5px;
+}
+
+.stat small{
+  color:#8793aa;
+}
+
+.progress{
+  height:9px;
+  background:#1b253a;
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:30px;
+}
+
+.progress-bar{
+  height:100%;
+  width:15%;
+  background:#8b5cf6;
+}
+
+.roadmap{
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+}
+
+.roadmap-item{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:#121a2d;
+  border:1px solid #26324b;
+  padding:17px;
+  border-radius:17px;
+}
+
+.node{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#26324b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.node.active{
+  background:#7c5cff;
+}
+
+.roadmap-item h3{
+  font-size:15px;
+  margin-bottom:5px;
+}
+
+.roadmap-item p{
+  color:#7f8ba3;
+  font-size:12px;
+}
+
+.info-box{
+  background:#121a2d;
+  border:1px solid #26324b;
+  border-radius:17px;
+  padding:18px;
+  margin-top:20px;
+}
+
+.info-box h3{
+  margin-bottom:10px;
+}
+
+.info-box p{
+  color:#94a3b8;
+  line-height:1.7;
+  font-size:14px;
+}
+
+footer{
+  text-align:center;
+  color:#4d5a73;
+  font-size:12px;
+  margin-top:55px;
+  padding-bottom:20px;
+}
+
+@media(max-width:420px){
+
+  .container{
+    padding:18px;
+  }
+
+  h1{
+    font-size:34px;
+  }
+
+  .goals{
+    gap:10px;
+  }
+
+  .goal{
+    padding:18px 14px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div id="app"></div>
+
+
+<script>
+
+/* =====================================
+   SKILLORA APP STATE
+===================================== */
+
+let page = "goal";
+
+let selectedGoal = "";
+let selectedSkills = [];
+let selectedLevel = "";
+let selectedTime = "";
+let selectedInterests = [];
+
+
+/* =====================================
+   DATA
+===================================== */
+
+const skillData = {
+
+  "AI / ML":[
+    "Python",
+    "Mathematics",
+    "NumPy",
+    "Pandas",
+    "Machine Learning"
+  ],
+
+  "Data Scientist":[
+    "Python",
+    "Statistics",
+    "SQL",
+    "Pandas",
+    "Data Visualization"
+  ],
+
+  "Cybersecurity":[
+    "Networking",
+    "Linux",
+    "Python",
+    "Security Basics",
+    "Ethical Hacking"
+  ],
+
+  "Web Developer":[
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Git / GitHub",
+    "React"
+  ],
+
+  "UI / UX":[
+    "Design Basics",
+    "Figma",
+    "Typography",
+    "Color Theory",
+    "User Research"
+  ],
+
+  "Electronics":[
+    "Basic Electronics",
+    "Circuits",
+    "Digital Electronics",
+    "Microcontrollers",
+    "Sensors"
+  ]
+
+};
+
+
+const interests = [
+  "💻 Coding",
+  "📊 Data",
+  "🤖 Artificial Intelligence",
+  "🎨 Design",
+  "🔐 Security",
+  "⚡ Technology",
+  "🚀 Projects",
+  "🧠 Problem Solving"
+];
+
+
+/* =====================================
+   ROADMAP DATA
+===================================== */
+
+const roadmapData = {
+
+  "AI / ML":[
+    "Python",
+    "Mathematics Basics",
+    "NumPy",
+    "Pandas",
+    "Data Visualization",
+    "Machine Learning",
+    "ML Projects",
+    "Portfolio",
+    "Internship Preparation"
+  ],
+
+  "Data Scientist":[
+    "Python",
+    "Statistics",
+    "SQL",
+    "Pandas",
+    "Data Visualization",
+    "Machine Learning",
+    "Data Projects",
+    "Portfolio"
+  ],
+
+  "Cybersecurity":[
+    "Computer Basics",
+    "Networking",
+    "Linux",
+    "Python",
+    "Security Fundamentals",
+    "Ethical Hacking",
+    "Security Projects",
+    "Portfolio"
+  ],
+
+  "Web Developer":[
+    "HTML & Web Basics",
+    "CSS & Responsive Design",
+    "JavaScript",
+    "Git & GitHub",
+    "React",
+    "Build Real Projects",
+    "Portfolio",
+    "Internship Preparation"
+  ],
+
+  "UI / UX":[
+    "Design Fundamentals",
+    "Figma",
+    "Typography",
+    "Color Theory",
+    "User Research",
+    "Wireframing",
+    "UI Projects",
+    "Portfolio"
+  ],
+
+  "Electronics":[
+    "Electronics Basics",
+    "Circuit Fundamentals",
+    "Digital Electronics",
+    "Microcontrollers",
+    "Sensors",
+    "Programming",
+    "Projects",
+    "Portfolio"
+  ]
+
+};
+
+
+/* =====================================
+   MAIN RENDER
+===================================== */
+
+function render(){
+
+  if(page==="goal") renderGoal();
+
+  if(page==="skills") renderSkills();
+
+  if(page==="level") renderLevel();
+
+  if(page==="time") renderTime();
+
+  if(page==="interests") renderInterests();
+
+  if(page==="roadmap") renderRoadmap();
+
+  if(page==="dashboard") renderDashboard();
+
+}
+
+
+/* =====================================
+   NAVIGATION
+===================================== */
+
+function nextPage(newPage){
+
+  page = newPage;
+
+  render();
+
+  window.scrollTo(0,0);
+
+}
+
+
+/* =====================================
+   GOAL PAGE
+===================================== */
+
+function renderGoal(){
+
+document.getElementById("app").innerHTML = `
+
+<div class="container">
+
+<nav>
+
+<div class="logo">
+SKILL<span>ORA</span>
+</div>
+
+<div class="menu">☰</div>
+
+</nav>
+
+
+<section class="hero">
+
+<div class="badge">
+✦ Personalized Learning Journey
+</div>
+
+<h1>
+What do you want<br>
+to <span>become?</span>
+</h1>
+
+<p class="subtitle">
+Tell us your goal and we'll build a personalized learning path for your journey.
+</p>
+
+</section>
+
+
+<section>
+
+<div class="section-title">
+
+<h2>Choose your goal</h2>
+
+<p>
+You can change this later
+</p>
+
+</div>
+
+
+<div class="goals">
+
+${Object.keys(skillData).map(goal=>`
+
+<div class="goal ${selectedGoal===goal?"selected":""}"
+onclick="chooseGoal('${goal}')">
+
+<div class="icon">
+
+${
+goal==="AI / ML"?"🤖":
+goal==="Data Scientist"?"📊":
+goal==="Cybersecurity"?"🔐":
+goal==="Web Developer"?"🌐":
+goal==="UI / UX"?"🎨":"⚡"
+}
+
+</div>
+
+<h3>${goal}</h3>
+
+<p>
+${
+goal==="AI / ML"?"Build intelligent systems":
+goal==="Data Scientist"?"Turn data into insights":
+goal==="Cybersecurity"?"Protect digital systems":
+goal==="Web Developer"?"Create modern websites":
+goal==="UI / UX"?"Design better experiences":
+"Build smart hardware"
+}
+</p>
+
+</div>
+
+`).join("")}
+
+</div>
+
+
+<button
+class="continue ${selectedGoal?"active":""}"
+onclick="goSkills()">
+
+Continue →
+
+</button>
+
+</section>
+
+
+<footer>
+© 2026 Skillora · Learn smarter. Build better.
+</footer>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================
+   GOAL SELECT
+===================================== */
+
+function chooseGoal(goal){
+
+  selectedGoal = goal;
+
+  render();
+
+}
+
+
+/* =====================================
+   SKILLS PAGE
+===================================== */
+
+function renderSkills(){
+
+const skills = skillData[selectedGoal];
+
+document.getElementById("app").innerHTML = `
+
+<div class="container">
+
+<nav>
+
+<div class="logo">
+SKILL<span>ORA</span>
+</div>
+
+<div class="menu">☰</div>
+
+</nav>
+
+
+<section class="hero">
+
+<div class="badge">
+✦ Step 2 of your journey
+</div>
+
+<h1>
+What do you<br>
+already <span>know?</span>
+</h1>
+
+<p class="subtitle">
+Select the skills you already have.
+</p>
+
+</section>
+
+
+<section>
+
+<div class="section-title">
+
+<h2>Current skills</h2>
+
+<p>
+Select one or more skills
+</p>
+
+</div>
+
+
+<div class="skill-list">
+
+${skills.map(skill=>`
+
+<div class="skill ${selectedSkills.includes(skill)?"selected":""}"
+onclick="toggleSkill('${skill}')">
+
+<div>
+<strong>${skill}</strong>
+</div>
+
+<div class="check">
+✓
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
+
+
+<button
+class="continue ${selectedSkills.length?"active":""}"
+onclick="goLevel()">
+
+Continue →
+
+</button>
+
+</section>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================
+   SKILL SELECT
+===================================== */
+
+function toggleSkill(skill){
+
+  if(selectedSkills.includes(skill)){
+
+    selectedSkills =
+    selectedSkills.filter(item=>item!==skill);
+
+  }else{
+
+    selectedSkills.push(skill);
+
+  }
+
+  render();
+
+}
+
+
+/* =====================================
+   LEVEL PAGE
+===================================== */
+
+function renderLevel(){
+
+document.getElementById("app").innerHTML = `
+
+<div class="container">
+
+<nav>
+
+<div class="logo">
+SKILL<span>ORA</span>
+</div>
+
+<div class="menu">☰</div>
+
+</nav>
+
+
+<section class="hero">
+
+<div class="badge">
+✦ Step 3 of your journey
+</div>
+
+<h1>
+What's your<br>
+<span>skill level?</span>
+</h1>
+
+<p class="subtitle">
+Choose the level that best describes your current knowledge.
+</p>
+
+</section>
+
+
+<section>
+
+<div class="section-title">
+
+<h2>Choose your level</h2>
+
+<p>
+We'll adjust your roadmap accordingly
+</p>
+
+</div>
+
+
+<div class="goals">
+
+
+<div class="goal ${selectedLevel==="Beginner"?"selected":""}"
+onclick="chooseLevel('Beginner')">
+
+<div class="icon">🌱</div>
+
+<h3>Beginner</h3>
+
+<p>
+I'm starting from the basics
+</p>
+
+</div>
+
+
+<div class="goal ${selectedLevel==="Intermediate"?"selected":""}"
+onclick="chooseLevel('Intermediate')">
+
+<div class="icon">🚀</div>
+
+<h3>Intermediate</h3>
+
+<p>
+I know the fundamentals
+</p>
+
+</div>
+
+
+<div class="goal ${selectedLevel==="Advanced"?"selected":""}"
+onclick="chooseLevel('Advanced')">
+
+<div class="icon">🔥</div>
+
+<h3>Advanced</h3>
+
+<p>
+I have strong knowledge
+</p>
+
+</div>
+
+
+</div>
+
+
+<button
+class="continue ${selectedLevel?"active":""}"
+onclick="goTime()">
+
+Continue →
+
+</button>
+
+</section>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================
+   LEVEL SELECT
+===================================== */
+
+function chooseLevel(level){
+
+  selectedLevel = level;
+
+  render();
+
+}
+
+
+/* =====================================
+   TIME PAGE
+===================================== */
+
+function renderTime(){
+
+const times = [
+  ["🌱","3 Hours","Light learning schedule"],
+  ["⚡","5 Hours","Balanced learning"],
+  ["🚀","7 Hours","Focused learning"],
+  ["🔥","10+ Hours","Fast learning pace"]
+];
+
+document.getElementById("app").innerHTML = `
+
+<div class="container">
+
+<nav>
+
+<div class="logo">
+SKILL<span>ORA</span>
+</div>
+
+<div class="menu">☰</div>
+
+</nav>
+
+
+<section class="hero">
+
+<div class="badge">
+✦ Step 4 of your journey
+</div>
+
+<h1>
+How much time<br>
+can you <span>give?</span>
+</h1>
+
+<p class="subtitle">
+Choose how much time you can spend learning each week.
+</p>
+
+</section>
+
+
+<section>
+
+<div class="section-title">
+
+<h2>Available time</h2>
+
+<p>
+We'll create a realistic roadmap for you
+</p>
+
+</div>
+
+
+<div class="goals">
+
+${times.map(item=>`
+
+<div class="goal ${selectedTime===item[1]?"selected":""}"
+onclick="chooseTime('${item[1]}')">
+
+<div class="icon">
+${item[0]}
+</div>
+
+<h3>
+${item[1]}
+</h3>
+
+<p>
+${item[2]}
+</p>
+
+</div>
+
+`).join("")}
+
+</div>
+
+
+<button
+class="continue ${selectedTime?"active":""}"
+onclick="goInterests()">
+
+Continue →
+
+</button>
+
+</section>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================
+   TIME SELECT
+===================================== */
+
+function chooseTime(time){
+
+  selectedTime = time;
+
+  render();
+
+}
+
+
+/* =====================================
+   INTEREST PAGE
+===================================== */
+
+function renderInterests(){
+
+document.getElementById("app").innerHTML = `
+
+<div class="container">
+
+<nav>
+
+<div class="logo">
+SKILL<span>ORA</span>
+</div>
+
+<div class="menu">☰</div>
+
+</nav>
+
+
+<section class="hero">
+
+<div class="badge">
+✦ Step 5 of your journey
+</div>
+
+<h1>
+What are you<br>
+<span>interested in?</span>
+</h1>
+
+<p class="subtitle">
+Choose the areas you enjoy learning about.
+</p>
+
+</section>
+
+
+<section>
+
+<div class="section-title">
+
+<h2>Your interests</h2>
+
+<p>
+Select as many as you want
+</p>
+
+</div>
+
+
+<div class="goals">
+
+${interests.map(item=>`
+
+<div class="goal ${selectedInterests.includes(item)?"selected":""}"
+onclick="toggleInterest('${item}')">
+
+<div class="icon">
+${item.split(" ")[0]}
+</div>
+
+<h3>
+${item.substring(item.indexOf(" ")+1)}
+</h3>
+
+</div>
+
+`).join("")}
+
+</div>
+
+
+<button
+class="continue ${selectedInterests.length?"active":""}"
+onclick="createRoadmap()">
+
+Build My Roadmap →
+
+</button>
+
+</section>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================
+   INTEREST SELECT
+===================================== */
+
+function toggleInterest(interest){
+
+  if(selectedInterests.includes(interest)){
+
+    selectedInterests =
+    selectedInterests.filter(item=>item!==interest);
+
+  }else{
+
+    selectedInterests.push(interest);
+
+  }
+
+  render();
+
+}
+
+
+/* =====================================
+   ROADMAP PAGE
+===================================== */
+
+function renderRoadmap(){
+
+const roadmap = roadmapData[selectedGoal];
+
+document.getElementById("app").innerHTML = `
+
+<div class="container">
+
+<nav>
+
+<div class="logo">
+SKILL<span>ORA</span>
+</div>
+
+<div class="menu">☰</div>
+
+</nav>
+
+
+<section class="hero">
+
+<div class="badge">
+✦ Your Personalized Roadmap
+</div>
+
+<h1>
+Your path to<br>
+<span>${selectedGoal}</span>
+</h1>
+
+<p class="subtitle">
+Your roadmap is based on your goal, skills, level, time and interests.
+</p>
+
+</section>
+
+
+<div class="stats">
+
+<div class="stat">
+<strong>${roadmap.length}</strong>
+<small>Steps</small>
+</div>
+
+<div class="stat">
+<strong>${selectedTime}</strong>
+<small>Per Week</small>
+</div>
+
+<div class="stat">
+<strong>${selectedLevel}</strong>
+<small>Level</small>
+</div>
+
+</div>
+
+
+<div class="progress">
+
+<div class="progress-bar"></div>
+
+</div>
+
+
+<div class="section-title">
+
+<h2>🚀 Your Roadmap</h2>
+
+<p>
+Learn → Practice → Build → Test
+</p>
+
+</div>
+
+
+<div class="roadmap">
+
+${roadmap.map((item,index)=>`
+
+<div class="roadmap-item">
+
+<div class="node ${index===0?"active":""}">
+${index===0?"▶":index+1}
+</div>
+
+<div>
+
+<h3>${item}</h3>
+
+<p>
+${
+index===0
+?"Start here — build your foundation."
+:
+"Learn → Practice → Mini Project → Test"
+}
+</p>
+
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
+
+
+<div class="info-box">
+
+<h3>🎯 Your Learning Target</h3>
+
+<p>
+You selected <strong>${selectedTime}</strong> per week.
+Stay consistent and complete one step at a time.
+</p>
+
+</div>
+
+
+<button
+class="continue active"
+onclick="goDashboard()">
+
+Open My Dashboard →
+
+</button>
+
+
+<footer>
+© 2026 Skillora · Learn smarter. Build better.
+</footer>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================
+   DASHBOARD
+===================================== */
+
+function renderDashboard(){
+
+document.getElementById("app").innerHTML = `
+
+<div class="container">
+
+<nav>
+
+<div class="logo">
+SKILL<span>ORA</span>
+</div>
+
+<div class="menu">☰</div>
+
+</nav>
+
+
+<section class="hero">
+
+<div class="badge">
+✦ Skillora Dashboard
+</div>
+
+<h1>
+Keep moving<br>
+<span>forward.</span>
+</h1>
+
+<p class="subtitle">
+Your personalized learning journey starts here.
+</p>
+
+</section>
+
+
+<div class="stats">
+
+<div class="stat">
+<strong>0%</strong>
+<small>Progress</small>
+</div>
+
+<div class="stat">
+<strong>0</strong>
+<small>Completed</small>
+</div>
+
+<div class="stat">
+<strong>🔥 0</strong>
+<small>Streak</small>
+</div>
+
+</div>
+
+
+<div class="info-box">
+
+<h3>📍 You are here</h3>
+
+<p>
+Goal: <strong>${selectedGoal}</strong>
+</p>
+
+<p>
+Level: <strong>${selectedLevel}</strong>
+</p>
+
+<p>
+Available time: <strong>${selectedTime}</strong>
+</p>
+
+</div>
+
+
+<div class="info-box">
+
+<h3>📚 Next Step</h3>
+
+<p>
+Start your first roadmap skill.
+Complete each skill using:
+</p>
+
+<br>
+
+<p>
+<strong>Learn → Practice → Mini Project → Test</strong>
+</p>
+
+</div>
+
+
+<button
+class="continue active"
+onclick="goRoadmap()">
+
+View My Roadmap →
+
+</button>
+
+
+<footer>
+© 2026 Skillora · Learn smarter. Build better.
+</footer>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================
+   BUTTON FUNCTIONS
+===================================== */
+
+function goSkills(){
+
+  if(selectedGoal===""){
+
+    alert("Please select your goal first.");
+
+    return;
+
+  }
+
+  nextPage("skills");
+
+}
+
+
+function goLevel(){
+
+  if(selectedSkills.length===0){
+
+    alert("Please select at least one skill.");
+
+    return;
+
+  }
+
+  nextPage("level");
+
+}
+
+
+function goTime(){
+
+  if(selectedLevel===""){
+
+    alert("Please select your skill level first.");
+
+    return;
+
+  }
+
+  nextPage("time");
+
+}
+
+
+function goInterests(){
+
+  if(selectedTime===""){
+
+    alert("Please select your available time first.");
+
+    return;
+
+  }
+
+  nextPage("interests");
+
+}
+
+
+function createRoadmap(){
+
+  if(selectedInterests.length===0){
+
+    alert("Please select at least one interest.");
+
+    return;
+
+  }
+
+  nextPage("roadmap");
+
+}
+
+
+function goDashboard(){
+
+  nextPage("dashboard");
+
+}
+
+
+function goRoadmap(){
+
+  nextPage("roadmap");
+
+}
+
+
+/* =====================================
+   START APP
+===================================== */
+
+render();
+
+</script>
+
+</body>
+</html>
