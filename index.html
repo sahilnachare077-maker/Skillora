@@ -300,16 +300,132 @@
         .classList.add("active");
     }
 
-    function continueNext() {
+  function continueNext() {
 
-      if (selectedGoal === "") {
-        alert("Please select your goal first.");
-        return;
-      }
+  if (selectedGoal === "") {
+    alert("Please select your goal first.");
+    return;
+  }
 
-      alert("Great choice! You selected " + selectedGoal);
+  let skills = [];
 
-    }
+  if (selectedGoal === "Web Developer") {
+    skills = ["HTML", "CSS", "JavaScript", "Git / GitHub", "React"];
+  } 
+  else if (selectedGoal === "AI / ML") {
+    skills = ["Python", "Mathematics", "NumPy", "Pandas", "Machine Learning"];
+  } 
+  else if (selectedGoal === "Data Scientist") {
+    skills = ["Python", "Statistics", "SQL", "Pandas", "Data Visualization"];
+  } 
+  else if (selectedGoal === "Cybersecurity") {
+    skills = ["Networking", "Linux", "Python", "Cyber Security Basics", "Ethical Hacking"];
+  } 
+  else if (selectedGoal === "UI / UX") {
+    skills = ["Design Basics", "Figma", "Typography", "Color Theory", "User Research"];
+  } 
+  else {
+    skills = ["Basic Concepts", "Tools", "Fundamentals", "Practice", "Projects"];
+  }
+
+  let skillCards = "";
+
+  skills.forEach(function(skill) {
+    skillCards += `
+      <div class="goal skill-card" onclick="toggleSkill(this)">
+        <div class="icon">☐</div>
+        <h3>${skill}</h3>
+        <p>I already know this</p>
+      </div>
+    `;
+  });
+
+  document.body.innerHTML = `
+
+    <div class="container">
+
+      <nav>
+        <div class="logo">SKILL<span>ORA</span></div>
+        <div class="menu">☰</div>
+      </nav>
+
+      <section class="hero">
+
+        <div class="badge">✦ Step 2 of your journey</div>
+
+        <h1>
+          What do you<br>
+          <span>already know?</span>
+        </h1>
+
+        <p class="subtitle">
+          Select the skills you already have.
+          Skillora will use them to personalize your roadmap.
+        </p>
+
+      </section>
+
+      <section class="goal-section">
+
+        <div class="section-title">
+          <h2>Your current skills</h2>
+          <p>Choose all that apply</p>
+        </div>
+
+        <div class="goals">
+          ${skillCards}
+        </div>
+
+        <button class="continue active" onclick="goToLevel()">
+          Continue →
+        </button>
+
+      </section>
+
+    </div>
+  `;
+}
+
+
+let selectedSkills = [];
+
+
+function toggleSkill(element) {
+
+  let skillName = element.querySelector("h3").innerText;
+
+  element.classList.toggle("selected");
+
+  if (selectedSkills.includes(skillName)) {
+
+    selectedSkills = selectedSkills.filter(
+      skill => skill !== skillName
+    );
+
+    element.querySelector(".icon").innerText = "☐";
+
+  } else {
+
+    selectedSkills.push(skillName);
+
+    element.querySelector(".icon").innerText = "☑";
+
+  }
+}
+
+
+function goToLevel() {
+
+  if (selectedSkills.length === 0) {
+    alert("Please select at least one skill.");
+    return;
+  }
+
+  alert(
+    "Skills selected: " +
+    selectedSkills.join(", ")
+  );
+} 
 
   </script>
 
