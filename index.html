@@ -411,7 +411,7 @@ function toggleSkill(element) {
     element.querySelector(".icon").innerText = "☑";
 
   }
-}
+
 function goToLevel() {
 
   if (selectedSkills.length === 0) {
@@ -452,37 +452,85 @@ function goToLevel() {
 
         <div class="goals">
 
-          <div class="goal" onclick="selectLevel(this, 'Beginner')">
+          <div class="goal"
+               onclick="selectLevel(this, 'Beginner')">
+
             <div class="icon">🌱</div>
             <h3>Beginner</h3>
             <p>I'm starting from the basics</p>
+
           </div>
 
-          <div class="goal" onclick="selectLevel(this, 'Intermediate')">
+
+          <div class="goal"
+               onclick="selectLevel(this, 'Intermediate')">
+
             <div class="icon">🚀</div>
             <h3>Intermediate</h3>
             <p>I know the fundamentals</p>
+
           </div>
 
-          <div class="goal" onclick="selectLevel(this, 'Advanced')">
+
+          <div class="goal"
+               onclick="selectLevel(this, 'Advanced')">
+
             <div class="icon">🔥</div>
             <h3>Advanced</h3>
             <p>I have strong knowledge</p>
+
           </div>
 
         </div>
 
-        <button class="continue" id="levelBtn" onclick="goToTime()">
+
+        <button
+          class="continue"
+          id="levelBtn"
+          onclick="finishLevel()">
+
           Continue →
+
         </button>
 
       </section>
 
     </div>
+
   `;
 }
 
+
 let selectedLevel = "";
+
+
+function selectLevel(element, level) {
+
+  document.querySelectorAll(".goal").forEach(card => {
+    card.classList.remove("selected");
+  });
+
+  element.classList.add("selected");
+
+  selectedLevel = level;
+
+  document.getElementById("levelBtn")
+    .classList.add("active");
+}
+
+
+function finishLevel() {
+
+  if (selectedLevel === "") {
+
+    alert("Please select your skill level first.");
+
+    return;
+  }
+
+  alert("Level selected: " + selectedLevel);
+}
+    let selectedLevel = "";
 
 function selectLevel(element, level) {
 
