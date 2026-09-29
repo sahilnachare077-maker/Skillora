@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skillora — Your Learning Path</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #070b18;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    /* NAVBAR */
+    nav {
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #6d7cff;
+    }
+
+    .menu {
+      width: 42px;
+      height: 42px;
+      border: 1px solid #26304d;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #aab4d0;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 45px 0 30px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 30px;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.3);
+      color: #9da7ff;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 9vw, 72px);
+      line-height: 1.05;
+      margin-bottom: 18px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, #5ee7ff, #7c6cff, #b86cff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      max-width: 650px;
+      margin: auto;
+      color: #9ca7c2;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* GOALS */
+    .goal-section {
+      margin-top: 35px;
+      padding-bottom: 60px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .section-title h2 {
+      font-size: 23px;
+      margin-bottom: 7px;
+    }
+
+    .section-title p {
+      color: #75809c;
+      font-size: 13px;
+    }
+
+    .goals {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .goal {
+      background: #101729;
+      border: 1px solid #202b47;
+      border-radius: 18px;
+      padding: 20px 14px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .goal:hover {
+      transform: translateY(-3px);
+      border-color: #6875ff;
+      background: #141c32;
+    }
+
+    .goal.selected {
+      border-color: #6875ff;
+      box-shadow: 0 0 20px rgba(104,117,255,0.15);
+    }
+
+    .icon {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .goal h3 {
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .goal p {
+      color: #74809b;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    /* BUTTON */
+    .continue {
+      display: block;
+      width: 100%;
+      max-width: 500px;
+      margin: 28px auto 0;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(90deg, #5865f2, #8b5cf6);
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      opacity: 0.5;
+    }
+
+    .continue.active {
+      opacity: 1;
+    }
+
+    .continue:active {
+      transform: scale(0.98);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #515d79;
+      font-size: 11px;
+    }
+
+    @media (min-width: 700px) {
+      .goals {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <nav>
+      <div class="logo">SKILL<span>ORA</span></div>
+      <div class="menu">☰</div>
+    </nav>
+
+    <section class="hero">
+
+      <div class="badge">✦ Personalized Learning Journey</div>
+
+      <h1>
+        What do you want<br>
+        <span>to become?</span>
+      </h1>
+
+      <p class="subtitle">
+        Tell us your goal, skills and interests.
+        Skillora will build a personalized learning roadmap
+        designed for your journey.
+      </p>
+
+    </section>
+
+    <section class="goal-section">
+
+      <div class="section-title">
+        <h2>Choose your goal</h2>
+        <p>You can change this later</p>
+      </div>
+
+      <div class="goals">
+
+        <div class="goal" onclick="selectGoal(this, 'AI / ML')">
+          <div class="icon">🤖</div>
+          <h3>AI / ML</h3>
+          <p>Build intelligent systems</p>
+        </div>
+
+        <div class="goal" onclick="selectGoal(this, 'Data Scientist')">
+          <div class="icon">📊</div>
+          <h3>Data Scientist</h3>
+          <p>Turn data into insights</p>
+        </div>
+
+        <div class="goal" onclick="selectGoal(this, 'Cybersecurity')">
+          <div class="icon">🔐</div>
+          <h3>Cybersecurity</h3>
+          <p>Protect digital systems</p>
+        </div>
+
+        <div class="goal" onclick="selectGoal(this, 'Web Developer')">
+          <div class="icon">🌐</div>
+          <h3>Web Developer</h3>
+          <p>Create modern websites</p>
+        </div>
+
+        <div class="goal" onclick="selectGoal(this, 'UI / UX')">
+          <div class="icon">🎨</div>
+          <h3>UI / UX</h3>
+          <p>Design better experiences</p>
+        </div>
+
+        <div class="goal" onclick="selectGoal(this, 'Electronics')">
+          <div class="icon">⚡</div>
+          <h3>Electronics</h3>
+          <p>Build smart hardware</p>
+        </div>
+
+      </div>
+
+      <button class="continue" id="continueBtn" onclick="continueNext()">
+        Continue →
+      </button>
+
+    </section>
+
+  </div>
+
+  <footer>
+    © 2026 Skillora · Learn smarter. Build better.
+  </footer>
+
+
+  <script>
+
+    let selectedGoal = "";
+
+    function selectGoal(element, goal) {
+
+      document.querySelectorAll(".goal").forEach(card => {
+        card.classList.remove("selected");
+      });
+
+      element.classList.add("selected");
+
+      selectedGoal = goal;
+
+      document.getElementById("continueBtn")
+        .classList.add("active");
+    }
+
+    function continueNext() {
+
+      if (selectedGoal === "") {
+        alert("Please select your goal first.");
+        return;
+      }
+
+      alert("Great choice! You selected " + selectedGoal);
+
+    }
+
+  </script>
+
+</body>
+</html>
